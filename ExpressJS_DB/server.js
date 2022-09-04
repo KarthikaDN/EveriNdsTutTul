@@ -8,13 +8,13 @@ var SdbCncVap = require("mysql")
 var SdbCncVaj = SdbCncVap.createConnection({
     host: "localhost",
     user: "SdbUsr",
-    password: "UsrPwd4Sdb",
-    database: "NamSdb"
+    password: "everinds123",
+    database: "namsdb"
 })
 
 SdbCncVaj.connect((ErrSdbVar) => {
     if (ErrSdbVar) throw ErrSdbVar
-    else console.log("Sdb Connected!");
+    console.log("Sdb Connected!");
 })
 
 // var JoiVap = require("joi")
@@ -133,21 +133,44 @@ app.delete("/user/:uid", (ReqNdsVar, ResNdsVar) => {
     })
 })
 
-app.post('/product', (req, res) => {
-
-    var ProDet = req.body
-
-    var SqlQryVar = `INSERT INTO PrdTbl (TitCol,DetCol,CostCol) VALUES ("${ProDet.TitVak}","${ProDet.DetVak}","${ProDet.CostVak}")`
-
+//=====================================================
+app.get("/prod", (ReqNdsVar, ResNdsVar) => {
+    var SqlQryVar = "SELECT UidCol, TitCol, DetCol, CostCol From prdtbl";
     SdbCncVaj.query(SqlQryVar, (ErrSdbVar, ResSdbVar) => {
+        if (ErrSdbVar) throw ErrSdbVar;
+        ResNdsVar.json(ResSdbVar);
+    });
+});
+app.post("/prod", (ReqNdsVar, ResNdsVar) => {
+    var ProdBod = ReqNdsVar.body;
+    var SqlQryVar = `INSERT INTO PrdTbl (TitCol, DetCol, CostCol) VALUES ("${ProdBod.TitVak}", "${ProdBod.DetVak}", "${ProdBod.CostVak}")`;
+    SdbCncVaj.query(SqlQryVar, (ErrSdbVar, ResSdbVar) => {
+        if (ErrSdbVar) throw ErrSdbVar;
+        ResNdsVar.json(ResSdbVar[0]);
+    });
+});
 
-        if (ErrSdbVar) throw ErrSdbVar
+app.put("/prod/:uid", (ReqNdsVar, ResNdsVar) => {
+    var UidVar = ReqNdsVar.params.uid;
+    var ProdBod = ReqNdsVar.body;
+    var SqlQryVar = `UPDATE PrdTbl SET TitCol="${ProdBod.TitVak}", DetCol="${ProdBod.DetVak}", CostCol="${ProdBod.CostVak}" WHERE UidCol = ${UidVar}`;
+    SdbCncVaj.query(SqlQryVar, (ErrSdbVar, ResSdbVar) => {
+        if (ErrSdbVar) throw ErrSdbVar;
+        ResNdsVar.json(ResSdbVar);
+    });
+});
 
-        res.json(ResSdbVar)
+app.delete("/prod/:uid", (ReqNdsVar, ResNdsVar) => {
+    var UidVar = ReqNdsVar.params.uid;
+    var SqlQryVar = `DELETE FROM PrdTbl WHERE UidCol = ${UidVar}`;
+    SdbCncVaj.query(SqlQryVar, (ErrSdbVar, ResSdbVar) => {
+        if (ErrSdbVar) throw ErrSdbVar;
+        ResNdsVar.json(ResSdbVar);
+    });
+});
 
-    })
 
-})
+//=====================================================
 
 app.post('/order', (req, res) => {
 

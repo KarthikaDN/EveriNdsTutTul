@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "06ed5a2c-a055-4ca7-9aaa-fb8b7cacd6ce",
+		"name": "Product Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"TitVak\":\r\n    \"DetVak\":\r\n    \"CostVak\":\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/product",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Product",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"TitVak\":\r\n    \"DetVak\":\r\n    \"CostVak\":\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/prod",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"prod"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update All details",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"TitVak\":\r\n    \"DetVak\":\r\n    \"CostVak\":\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/prod",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"prod"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Prod",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"TitVak\":\r\n    \"DetVak\":\r\n    \"CostVak\":\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/prod",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"prod"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
